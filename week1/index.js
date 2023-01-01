@@ -1,8 +1,10 @@
-import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+// 產品資料格式
+import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.45/vue.esm-browser.min.js';
 
-createApp({
+const app = {
   data() {
     return {
+      prod: {},
       products: [
         {
           category: "甜甜圈",
@@ -13,7 +15,7 @@ createApp({
           origin_price: 150,
           price: 99,
           title: "草莓莓果夾心圈",
-          unit: "元",
+          unit: "個",
           num: 10,
           imageUrl: "https://images.unsplash.com/photo-1583182332473-b31ba08929c8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzR8fGRvbnV0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60",
           imagesUrl: [
@@ -30,7 +32,7 @@ createApp({
           origin_price: 1000,
           price: 900,
           title: "蜂蜜檸檬蛋糕",
-          unit: "元",
+          unit: "個",
           num: 1,
           imageUrl: "https://images.unsplash.com/photo-1627834377411-8da5f4f09de8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1001&q=80",
           imagesUrl: [
@@ -46,7 +48,7 @@ createApp({
           origin_price: 700,
           price: 600,
           title: "暗黑千層",
-          unit: "元",
+          unit: "個",
           num: 15,
           imageUrl: "https://images.unsplash.com/photo-1505253149613-112d21d9f6a9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGNha2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60",
           imagesUrl: [
@@ -54,8 +56,9 @@ createApp({
             "https://images.unsplash.com/photo-1540337706094-da10342c93d8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGNha2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
           ]
         }
-      ],
-      tempProduct: {},
+      ]
     }
-  },
-}).mount('#app');
+  }
+};
+
+createApp(app).mount('#app');
