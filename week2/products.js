@@ -37,6 +37,9 @@ createApp({
     },
     prodDetail(item) {
       this.prod = item;
+    },
+    returnIndex() {
+      window.location = '../index.html';
     }
   },
   mounted() {

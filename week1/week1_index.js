@@ -58,7 +58,12 @@ const app = {
         }
       ]
     }
-  }
+  },
+  methods: {
+    returnIndex() {
+      window.location = '../index.html';
+    }
+  },
 };
 
 createApp(app).mount('#app');
