@@ -34,7 +34,7 @@
     <div id="app">
       <div class="container">
         <h1>請先登入</h1>
-        <div class="col">
+        <div class="col mb-3">
           <form @submit.prevent="login">
             <div class="col mb-3">
               <label for="email">帳號：</label>
@@ -47,9 +47,9 @@
 
             </div>
             <button id="login" class="btn btn-primary w-100" type="submit">登入</button>
-
           </form>
         </div>
+        <button class="btn btn-secondary w-100" type="button" v-on:click="returnIndex">回到每週任務列表</button>
       </div>
     </div>
 

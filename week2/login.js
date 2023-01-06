@@ -23,5 +23,8 @@ createApp({
         alert(err.response.data.message);
       });
     },
+    returnIndex() {
+      window.location = '../index.html';
+    }
   },
 }).mount('#app');
