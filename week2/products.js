@@ -5,7 +5,7 @@ createApp({
     return {
       apiUrl: 'https://vue3-course-api.hexschool.io/v2',
       apiPath: 'cheryl-hexschool',
-      prod: {},
+      tempProduct: {},
       products: [],
     }
   },
@@ -36,7 +36,7 @@ createApp({
         })
     },
     prodDetail(item) {
-      this.prod = item;
+      this.tempProduct = item;
     },
     returnIndex() {
       window.location = '../index.html';
