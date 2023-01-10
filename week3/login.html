@@ -37,19 +37,17 @@
         <div class="col mb-3">
           <form @submit.prevent="login">
             <div class="col mb-3">
-              <label for="email">帳號：</label>
+              <label class="fs-5" for="email">帳號：</label>
               <input type="email" id="email" v-model="user.username">
-
             </div>
             <div class="col mb-3">
-              <label for="password">密碼：</label>
+              <label class="fs-5" for="password">密碼：</label>
               <input type="password" id="password" v-model="user.password">
-
             </div>
             <button id="login" class="btn btn-primary w-100" type="submit">登入</button>
           </form>
         </div>
-        <button class="btn btn-secondary w-100" type="button" v-on:click="returnIndex">回到每週任務列表</button>
+        <!-- <button class="btn btn-secondary w-100" type="button" v-on:click="returnIndex">回到每週任務列表</button> -->
       </div>
     </div>
 
