@@ -44,13 +44,13 @@ createApp({
     // modal.show()
     openModal(event, item) {
       if (event === 'new') {
-        console.log(this.tempProduct);
+        // console.log(this.tempProduct);
         newModal.show();
       }else if (event === 'edite') {
-        this.tempProduct = item;
+        this.tempProduct = { ...item };
         productModal.show();
       }else if (event === 'delete') {
-        this.tempProduct = item;
+        this.tempProduct = { ...item };
         delModal.show();
         // console.log(this.tempProduct);
       }
@@ -132,8 +132,8 @@ createApp({
     this.checkLogin();
 
     // Modal
-    newModal = new bootstrap.Modal(document.querySelector('#newModal'));
-    productModal = new bootstrap.Modal(document.querySelector('#productModal'));
-    delModal = new bootstrap.Modal(document.querySelector('#deleteModal'));
+    newModal = new bootstrap.Modal(document.querySelector('#newModal'), {backdrop: 'static', keyboard: false});
+    productModal = new bootstrap.Modal(document.querySelector('#productModal'), {backdrop: 'static', keyboard: false});
+    delModal = new bootstrap.Modal(document.querySelector('#deleteModal'), {backdrop: 'static', keyboard: false});
   }
 }).mount('#app');
