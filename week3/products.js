@@ -121,9 +121,9 @@ createApp({
     createImages() {
       this.tempProduct.imagesUrl.push('');
     },
-    // returnIndex() {
-    //   window.location = '../index.html';
-    // }
+    returnIndex() {
+      window.location = '../index.html';
+    }
   },
   mounted() {
     // 取出 Token
