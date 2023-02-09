@@ -83,6 +83,7 @@ const app = Vue.createApp({
       // console.log(id)
     },
     addToCart(product_id, qty = 1) {
+      this.loadingItem = product_id;
       const data = {
         product_id,
         qty
@@ -91,6 +92,7 @@ const app = Vue.createApp({
       .then(res => {
         // console.log(res.data);
         this.$refs.productModal.hide();
+        this.loadingItem = '';
         this.getCarts();
       })
       .catch(err => {
