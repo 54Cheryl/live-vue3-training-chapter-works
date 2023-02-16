@@ -11,7 +11,7 @@ export default {
       </li>
 
       <li class="page-item" 
-        :class="{ active: page === pages.current_page }" 
+        :class="{ disabled: page === pages.current_page }" 
         v-for="page in pages.total_pages" 
         :key="page + 'page'"
       >
