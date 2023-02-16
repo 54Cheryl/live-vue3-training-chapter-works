@@ -6,33 +6,45 @@
   <router-link to="/">回到前台home</router-link> |
   <a href="#" @click.prevent="logout">登出</a>
   <hr>
-  <RouterView></RouterView>
+  <RouterView v-if="checkSuccess"></RouterView>
 </template>
 
 <script>
 import { RouterView } from 'vue-router'
 const { VITE_APP_URL } = import.meta.env
 export default {
+  data () {
+    return {
+      checkSuccess: false
+    }
+  },
   components: {
     RouterView
   },
   methods: {
     logout () {
-      document.cookie = `cherylToken=; expires=${new Date()};`
+      document.cookie = 'cherylToken=; expires=;'
       this.$router.push('/login')
     },
     checkLogin () {
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)cherylToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-      this.$http.defaults.headers.common.Authorization = token
-      this.$http.post(`${VITE_APP_URL}api/user/check`)
-        .then((res) => {
-          if (!res.data.success) {
+      if (token) {
+        this.$http.defaults.headers.common.Authorization = `${token}`
+        this.$http.post(`${VITE_APP_URL}api/user/check`, { api_token: this.token })
+          .then((res) => {
+            this.checkSuccess = true
+            if (!res.data.success) {
+              this.$router.push('/login')
+            }
+          })
+          .catch((err) => {
+            alert(err.response.data.message)
             this.$router.push('/login')
-          }
-        })
-        .catch(() => {
-          this.$router.push('/login')
-        })
+          })
+      } else {
+        alert('請先登入')
+        this.$router.push('/login')
+      }
     }
   },
   mounted () {

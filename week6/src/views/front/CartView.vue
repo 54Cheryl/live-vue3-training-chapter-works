@@ -54,6 +54,83 @@
       </tfoot>
     </table>
   </div>
+  <div class="my-5 row justify-content-center">
+    <VForm ref="form" class="col-md-6" v-slot="{ errors }" @submit="onSubmit">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <VField
+          id="email"
+          name="email"
+          type="email"
+          class="form-control"
+          placeholder="請輸入 Email"
+          :class="{ 'is-invalid': errors['email'] }"
+          rules="email|required"
+          v-model="user.email"
+        ></VField>
+        <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">收件人姓名</label>
+        <VField
+          id="name"
+          name="姓名"
+          type="text"
+          class="form-control"
+          :class="{ 'is-invalid': errors['姓名'] }"
+          placeholder="請輸入姓名"
+          rules="required"
+          v-model="user.name"
+        ></VField>
+        <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+      </div>
+
+      <div class="mb-3">
+        <label for="tel" class="form-label">收件人電話</label>
+        <VField
+          id="tel"
+          name="電話"
+          type="text"
+          class="form-control"
+          :class="{ 'is-invalid': errors['電話'] }"
+          placeholder="請輸入手機號碼"
+          :rules="isPhone"
+          v-model="user.tel"
+        ></VField>
+        <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+      </div>
+
+      <div class="mb-3">
+        <label for="address" class="form-label">收件人地址</label>
+        <VField
+          id="address"
+          name="地址"
+          type="text"
+          class="form-control"
+          :class="{ 'is-invalid': errors['地址'] }"
+          placeholder="請輸入地址"
+          rules="required"
+          v-model="user.address"
+        ></VField>
+        <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+      </div>
+
+      <div class="mb-3">
+        <label for="message" class="form-label">留言</label>
+        <textarea
+          id="message"
+          class="form-control"
+          cols="30"
+          rows="10"
+          v-model="user.message"
+        ></textarea>
+      </div>
+      <div class="text-end">
+        <button type="submit" class="btn btn-danger">送出訂單</button>
+      </div>
+    </VForm>
+  </div>
 </template>
 
 <script>
@@ -65,7 +142,14 @@ export default {
       products: [],
       productId: '',
       cart: {},
-      user: {}
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        message: ''
+      },
+      loadingItem: ''
     }
   },
   methods: {
@@ -120,10 +204,18 @@ export default {
     },
     isPhone (value) {
       const phoneNumber = /^(09)[0-9]{8}$/
-      return phoneNumber.test(value) ? true : '需要正確的電話號碼'
+      return phoneNumber.test(value) ? true : '須為正確的手機號碼 (ex：0912345678)'
     },
     onSubmit () {
       console.log('送出表單')
+      this.user = {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        message: ''
+      }
+      this.getCarts()
     }
   },
   mounted () {
