@@ -64,7 +64,13 @@ const app = Vue.createApp({
       productId: '',
       cart: {},
       loadingItem: '',
-      user: {}
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        message: ''
+      }
     }
   },
   methods: {
@@ -102,7 +108,7 @@ const app = Vue.createApp({
     getCarts() {
       axios.get(`${apiUrl}/api/${apiPath}/cart`)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.cart = res.data.data;
         })
         .catch(err => {
@@ -150,10 +156,18 @@ const app = Vue.createApp({
     },
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/
-      return phoneNumber.test(value) ? true : '需要正確的電話號碼'
+      return phoneNumber.test(value) ? true : '須為正確的手機號碼 (ex：0912345678)'
     },
     onSubmit() {
       console.log('送出表單');
+      this.user = {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        message: ''
+      };
+      this.getCarts();
     }
   },
   components: {
